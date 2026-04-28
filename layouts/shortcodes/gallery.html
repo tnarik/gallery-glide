@@ -75,8 +75,8 @@
   }
 </style>
 
-{{- $swiperCSS := resources.Get "css/swiper-bundle.min.css" | resources.Fingerprint -}}
-<link rel="stylesheet" href="{{ $swiperCSS.RelPermalink }}">
+{{- $css := resources.Get "css/gallery.css" | css.PostCSS | resources.Fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 {{/* JS file becomes a resource */}}
 {{- $jsResource := readFile "layouts/shortcodes/gallery.js" | resources.FromString "js/gallery-src.js" -}}

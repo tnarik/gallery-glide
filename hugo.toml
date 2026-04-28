@@ -1,10 +1,4 @@
 [module]
     [[module.mounts]]
-        source = "node_modules/swiper/swiper-bundle.min.css"
-        target = "assets/css/swiper-bundle.min.css"
-    [[module.mounts]]
         source = "layouts"
         target = "layouts"
-    [[module.mounts]]
-        source = "assets"
-        target = "assets"
