@@ -75,7 +75,7 @@
   }
 </style>
 
-{{- $css := resources.Get "css/gallery.css" | css.PostCSS | resources.Fingerprint -}}
+{{- $css := resources.Get "css/gallery.css" | resources.Fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
 {{/* JS file becomes a resource */}}
