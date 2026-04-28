@@ -1,13 +1,8 @@
 {
-  "name": "gallery-glide",
-  "version": "0.0.1",
-  "description": "gallery carousel as a Hugo Module",
-  "private": true,
-  "main": "",
-  "keywords": [],
-  "author": "tnarik <tnarik@lecafeautomatique.co.uk>",
-  "license": "ISC",
   "dependencies": {
-    "swiper": "^12.1.3"
+    "swiper": "^12.1.3",
+    "postcss": "^8.5.12",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1"
   }
 }
