@@ -75,12 +75,42 @@
   }
 </style>
 
-{{- $swiperCSS := resources.Get "css/swiper-bundle.min.css" | resources.Fingerprint -}}
-<link rel="stylesheet" href="{{ $swiperCSS.RelPermalink }}">
+<link rel="stylesheet" href="/gall/swiper-bundle.css">
 
-{{/* JS file becomes a resource */}}
-{{- $jsResource := readFile "layouts/shortcodes/gallery.js" | resources.FromString (printf "js/gallery-src-%d.js" (now.UnixNano)) -}}
-{{/* Then processed as a template */}}
-{{- $jsTemplated := $jsResource | resources.ExecuteAsTemplate (printf "js/gallery-exec-%d.js" (now.UnixNano)) . -}}
-{{- $jsBuilt := $jsTemplated | js.Build (dict "minify" true) | resources.Fingerprint -}}
-<script src="{{ $jsBuilt.RelPermalink }}"></script>
+<script type="module">
+{{ with resources.Get "gall/swiper-bundle.mjs" | resources.Fingerprint }}
+const { default: Swiper } = await import({{ .Permalink }});
+{{ end }}
+  // import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.mjs';
+(function (){
+
+  if (typeof Swiper === 'undefined') {
+  return;
+  }
+
+  const captionEl = document.getElementById('caption-{{ $gallery_name }}');
+  new Swiper('.{{ $selector }}', {
+    loop: true,
+    // autoplay: { delay: 3000 },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.{{ $selector }} .swiper-button-next',
+      prevEl: '.{{ $selector }} .swiper-button-prev',
+    },
+    pagination: { el: '.{{ $selector }} .swiper-pagination', clickable: true },
+    lazy: true,
+    on: {
+    init: function () {
+      const currentSlide = this.slides[this.activeIndex];
+      captionEl.innerText = currentSlide.getAttribute('data-caption');
+    },
+    slideChange: function () {
+      const currentSlide = this.slides[this.activeIndex];
+      captionEl.innerText = currentSlide.getAttribute('data-caption');
+    },
+  },
+  });
+})();
+
+</script>

@@ -1,0 +1,32 @@
+[module]
+    [[module.imports]]
+        path = "github.com/nolimits4web/Swiper"
+
+        [[module.imports.mounts]]
+            source = "src"
+            target = "assets/_/src"
+        [[module.imports.mounts]]
+            source = ".browserslistrc"
+            target = "assets/_/src"
+        [[module.imports.mounts]]
+            source = "scripts"
+            target = "assets/_/src"
+        # [[module.imports.mounts]]
+        #     source = "dist/*.mjs"
+        #     target = "assets/gal/"
+        # [[module.imports.mounts]]
+        #     source = "dist/modules"
+        #     target = "assets/gal/modules"
+        # [[module.imports.mounts]]
+        #     source = "dist/shared"
+        #     target = "assets/gal/shared"
+
+        # [[module.imports.mounts]]
+        #     source = "dist/modules"
+        #     target = "static/gal/modules"
+        # [[module.imports.mounts]]
+        #     source = "dist/shared"
+        #     target = "static/gal/shared"
+        [[module.imports.mounts]]
+            source = "dist"
+            target = "static/gal"

@@ -1,0 +1,16 @@
+[module]
+    # [[module.imports]]
+    #     path = "github.com/nolimits4web/Swiper"
+
+    #     [[module.imports.mounts]]
+    #         source = "node_modules/swiper"
+    #         target = "assets/gall"
+    [[module.mounts]]
+        source = "node_modules/swiper"
+        target = "assets/gall"
+    [[module.mounts]]
+        source = "node_modules/swiper/swiper-bundle.min.css"
+        target = "assets/css/swiper-bundle.min.css"
+    [[module.mounts]]
+        source = "layouts"
+        target = "layouts"
