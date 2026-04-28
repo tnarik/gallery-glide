@@ -79,7 +79,7 @@
 <link rel="stylesheet" href="{{ $swiperCSS.RelPermalink }}">
 
 {{/* JS file becomes a resource */}}
-{{- $jsResource := readFile "layouts/shortcodes/gallery.js" | resources.FromString (printf "js/gallery-src-%d.js" (now.UnixNano)) -}}
+{{- $jsResource := readFile "layouts/shortcodes/gallery.js" | resources.FromString "js/gallery-src.js" -}}
 {{/* Then processed as a template */}}
 {{- $jsTemplated := $jsResource | resources.ExecuteAsTemplate (printf "js/gallery-exec-%d.js" (now.UnixNano)) . -}}
 {{- $jsBuilt := $jsTemplated | js.Build (dict "minify" true) | resources.Fingerprint -}}
