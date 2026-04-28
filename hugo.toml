@@ -5,3 +5,6 @@
     [[module.mounts]]
         source = "layouts"
         target = "layouts"
+    [[module.mounts]]
+        source = "assets"
+        target = "assets"
