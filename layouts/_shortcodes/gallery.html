@@ -78,9 +78,9 @@
 {{- $css := resources.Get "css/gallery.css" | css.PostCSS | resources.Fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
-{{/* JS file becomes a resource */}}
-{{- $jsResource := readFile "layouts/shortcodes/gallery.js" | resources.FromString "js/gallery-src.js" -}}
-{{/* Then processed as a template */}}
-{{- $jsTemplated := $jsResource | resources.ExecuteAsTemplate (printf "js/gallery-exec-%d.js" (now.UnixNano)) . -}}
-{{- $jsBuilt := $jsTemplated | js.Build (dict "minify" true) | resources.Fingerprint -}}
+{{- with resources.Get "js/gallery.js" -}}
+  {{- $jsContext := dict "GalleryName" $gallery_name -}}
+  {{- $jsTemplated := . | resources.ExecuteAsTemplate (printf "js/gallery-exec-%d.js" (now.UnixNano)) $jsContext -}}
+  {{- $jsBuilt := $jsTemplated | js.Build (dict "minify" true) | resources.Fingerprint -}}
 <script src="{{ $jsBuilt.RelPermalink }}"></script>
+{{- end -}}
